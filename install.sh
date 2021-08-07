@@ -6,6 +6,7 @@ apt install ppp pptpd -y
 echo localip 172.16.0.1 >> /etc/pptpd.conf
 echo remoteip 172.16.0.2-254 >> /etc/pptpd.conf
 
+#Настройка PPTP
 echo mtu 1400 >> /etc/ppp/pptpd-options
 echo mru 1400 >> /etc/ppp/pptpd-options
 echo auth >> /etc/ppp/pptpd-options
@@ -13,6 +14,7 @@ echo require-mppe >> /etc/ppp/pptpd-options
 echo ms-dns 8.8.8.8 >> /etc/ppp/pptpd-options
 echo ms-dns 8.8.4.4 >> /etc/ppp/pptpd-options
 
+#IP Forwarding нужен для "проксирования" трафика
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
 iptables -A INPUT -p gre -j ACCEPT
